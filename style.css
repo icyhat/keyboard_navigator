@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+kbd {
+    display: inline-block;
+    width: 4em;
+    height: 4em;
+    border: 1px solid red;
+    position: relative;
+}
+
+/* centering the kbd_wrapper */
+
+main {
+    text-align: center;
+}
+#main {
+    display: inline-block;
+}
+/* right move line2, line3 */
+#main > div:nth-child(2) {
+    margin-left: 1.5em;
+}
+#main > div:nth-child(3) {
+    margin-left: 1.5em;
+}
+
+/* button  */
+button {
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    background-color: greenyellow;
+    /* hover => appear */
+    display: none;
+    
+}
+kbd:hover > button {
+    display: inline-block;
+}
