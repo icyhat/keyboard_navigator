@@ -1,7 +1,7 @@
 
 // alpha record str
 const keys_rec = "qwertyuiop, asdfghjkl, zxcvbnm";
-const sites_init = "amazon.com, google.com, zhihu.com, v2ex.com";
+const sites_init = "amazon.com, opera.com, zhihu.com, v2ex.com";
 
 // keys: "abc#def" => [[a,b,c], [d,e,f]]
 const keys_arr = (function() {
@@ -43,10 +43,21 @@ keys_arr.forEach(line => {
         main_kbd.textContent = key.toUpperCase();
         const kbd_button = append_element("button", main_kbd);
         kbd_button.textContent = "Edit";
+        kbd_button.id = "button_" + key;
+        const kbd_img = append_element("img", main_kbd);
+        if (sites_map[key]!==undefined) {
+            kbd_img.src = sites_map[key] + "/favicon.ico";
+        } else {
+            kbd_img.src = "./image/blank.png";
+        }
+
         kbd_button.onclick = function (btn_event) {
-            const new_site = "https://" + prompt("input new sites!");
-            sites_map[key] = new_site;
-            localStorage.setItem("local_sites_map", JSON.stringify(sites_map));
+            const new_site = prompt("input new sites!");
+            if (new_site) {
+                sites_map[key] = "https://" + new_site;
+                kbd_img.src = sites_map[key] + "/favicon.ico";
+                localStorage.setItem("local_sites_map", JSON.stringify(sites_map));
+            }
         };
     });
 });
@@ -55,7 +66,12 @@ keys_arr.forEach(line => {
 document.onkeypress = function (kb_event) {
     const key = kb_event["key"];
     const site = sites_map[key];
-    window.open(site, "_blank");
+    if(sites_map[key]) {
+        window.open(site, "_blank");
+    } else {
+        alert("no related site on the key..")
+        document.getElementById("button_" + key).click();
+    }
 }
 
 // create and append element
