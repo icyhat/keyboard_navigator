@@ -59,11 +59,14 @@ main {
 /* button  */
 button {
     position: absolute;
-    right: 2px;
-    bottom: 2px;
-    background-color: #99D5CD;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
     /* hover => appear */
     display: none;
+
+    border-radius: 22px;
+    border-color: #fff;
 }
 /* hover => appear */
 kbd:hover > button {

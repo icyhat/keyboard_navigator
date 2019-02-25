@@ -42,7 +42,7 @@ keys_arr.forEach(line => {
         const main_kbd = append_element("kbd", main_div);
         main_kbd.textContent = key.toUpperCase();
         const kbd_button = append_element("button", main_kbd);
-        kbd_button.textContent = "Edit";
+        kbd_button.textContent = "✍";
         kbd_button.id = "button_" + key;
         const kbd_img = append_element("img", main_kbd);
         if (sites_map[key]!==undefined) {
@@ -50,7 +50,7 @@ keys_arr.forEach(line => {
         } else {
             kbd_img.src = "./image/blank.png";
         }
-
+        // events
         kbd_button.onclick = function (btn_event) {
             const new_site = prompt("input new sites!");
             if (new_site) {
@@ -58,6 +58,9 @@ keys_arr.forEach(line => {
                 kbd_img.src = sites_map[key] + "/favicon.ico";
                 localStorage.setItem("local_sites_map", JSON.stringify(sites_map));
             }
+        };
+        kbd_img.onerror = function (e) {
+            e.target.src = "./image/blank.png";
         };
     });
 });
